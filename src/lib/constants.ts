@@ -84,7 +84,7 @@ export const STAFF_MEMBERS = [
     name: 'ZennMC', 
     role: 'Admin', 
     roleColor: 'text-orange-400', 
-    skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' 
+    skinHead: 'https://image2url.com/r2/default/images/1773194645166-cb22a7d4-c94e-4fe3-a6ae-6faa647f968e.png' 
   },
   { 
     name: 'Belum ada', 
