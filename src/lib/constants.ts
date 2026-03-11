@@ -75,86 +75,62 @@ export const RANKS = [
 // Staff Members - Using regular image URLs
 export const STAFF_MEMBERS = [
   { 
-    name: 'Valoria', 
+    name: 'FatihMC', 
     role: 'Owner', 
     roleColor: 'text-red-400', 
-    skinHead: 'https://i.imgur.com/8Kf5EQM.png' 
+    skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' 
   },
   { 
-    name: 'NeroX', 
+    name: 'ZennMC', 
     role: 'Admin', 
     roleColor: 'text-orange-400', 
-    skinHead: 'https://i.imgur.com/7Xl5P6M.png' 
+    skinHead: 'https://imgur.com/a/keNHEth' 
   },
   { 
-    name: 'DarkKnight', 
+    name: 'Belum ada', 
     role: 'Admin', 
     roleColor: 'text-orange-400', 
-    skinHead: 'https://i.imgur.com/9Yq3P8N.png' 
+    skinHead: 'https://imgur.com/a/keNHEth' 
   },
   { 
-    name: 'ShadowMist', 
+    name: 'Belum ada', 
     role: 'Helper', 
     roleColor: 'text-green-400', 
-    skinHead: 'https://i.imgur.com/2Wk4R7L.png' 
+    skinHead: 'https://imgur.com/a/keNHEth' 
   },
   { 
-    name: 'LightBringer', 
+    name: 'Belum ada', 
     role: 'Helper', 
     roleColor: 'text-green-400', 
-    skinHead: 'https://i.imgur.com/5Tm3K9P.png' 
+    skinHead: 'https://imgur.com/a/keNHEth' 
   },
   { 
-    name: 'CreativePro', 
+    name: 'Belun ada', 
     role: 'Creator', 
     roleColor: 'text-purple-400', 
-    skinHead: 'https://i.imgur.com/4Ln8V2Q.png' 
+    skinHead: 'https://imgur.com/a/keNHEth' 
   },
 ];
 
 // Achievements - Using regular image URLs
 export const ACHIEVEMENTS = [
   { 
-    name: 'ChampionBuilder', 
+    name: 'BiyannCraft', 
     event: 'Build Competition #1', 
     place: '1st Place',
     icon: '🏗️',
-    skinHead: 'https://i.imgur.com/Jf3K8Lm.png',
-    description: 'Membangun kastil megah dengan detail yang luar biasa'
-  },
-  { 
-    name: 'PvPMaster', 
-    event: 'PvP Tournament', 
-    place: '1st Place',
-    icon: '⚔️',
-    skinHead: 'https://i.imgur.com/Kp5M9Nn.png',
-    description: 'Tak terkalahkan dalam turnamen PvP'
-  },
-  { 
-    name: 'SpeedRunner', 
-    event: 'Speedrun Challenge', 
-    place: '1st Place',
-    icon: '🏃',
-    skinHead: 'https://i.imgur.com/Lq7N2Pp.png',
-    description: 'Menyelesaikan challenge dalam waktu tercepat'
-  },
-  { 
-    name: 'RedstoneEngineer', 
-    event: 'Redstone Contest', 
-    place: '1st Place',
-    icon: '⚡',
-    skinHead: 'https://i.imgur.com/Mr9Q4Rs.png',
-    description: 'Membuat mesin redstone paling kompleks'
+    skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg',
+    description: 'Membangun Masjid yang megah dengan detail yang luar biasa'
   },
 ];
 
 // Top Voters - Using regular image URLs
 export const TOP_VOTERS = [
-  { rank: 1, name: 'DiamondKing', votes: 156, skinHead: 'https://i.imgur.com/Ns1T2Uv.png' },
+  { rank: 1, name: 'DiamondKing', votes: 156, skinHead: 'https://imgur.com/a/keNHEth' },
   { rank: 2, name: 'VoteChampion', votes: 142, skinHead: 'https://i.imgur.com/Ot3U4Vw.png' },
   { rank: 3, name: 'LoyalPlayer', votes: 128, skinHead: 'https://i.imgur.com/Pu5V6Wx.png' },
   { rank: 4, name: 'ServerFan', votes: 115, skinHead: 'https://i.imgur.com/Qv6W7Xy.png' },
-  { rank: 5, name: 'MinecraftLover', votes: 98, skinHead: 'https://i.imgur.com/Rw7X8Yz.png' },
+  { rank: 5, name: 'MinecraftLover', votes: 98, skinHead: 'https://imgur.com/a/keNHEth' },
 ];
 
 // Server Features
