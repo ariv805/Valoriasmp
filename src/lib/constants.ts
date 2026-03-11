@@ -84,31 +84,31 @@ export const STAFF_MEMBERS = [
     name: 'ZennMC', 
     role: 'Admin', 
     roleColor: 'text-orange-400', 
-    skinHead: 'https://imgur.com/a/keNHEth' 
+    skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' 
   },
   { 
     name: 'Belum ada', 
     role: 'Admin', 
     roleColor: 'text-orange-400', 
-    skinHead: 'https://imgur.com/a/keNHEth' 
+    skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' 
   },
   { 
     name: 'Belum ada', 
     role: 'Helper', 
     roleColor: 'text-green-400', 
-    skinHead: 'https://imgur.com/a/keNHEth' 
+    skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' 
   },
   { 
     name: 'Belum ada', 
     role: 'Helper', 
     roleColor: 'text-green-400', 
-    skinHead: 'https://imgur.com/a/keNHEth' 
+    skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' 
   },
   { 
     name: 'Belun ada', 
     role: 'Creator', 
     roleColor: 'text-purple-400', 
-    skinHead: 'https://imgur.com/a/keNHEth' 
+    skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' 
   },
 ];
 
@@ -126,11 +126,11 @@ export const ACHIEVEMENTS = [
 
 // Top Voters - Using regular image URLs
 export const TOP_VOTERS = [
-  { rank: 1, name: 'DiamondKing', votes: 156, skinHead: 'https://imgur.com/a/keNHEth' },
-  { rank: 2, name: 'VoteChampion', votes: 142, skinHead: 'https://i.imgur.com/Ot3U4Vw.png' },
-  { rank: 3, name: 'LoyalPlayer', votes: 128, skinHead: 'https://i.imgur.com/Pu5V6Wx.png' },
-  { rank: 4, name: 'ServerFan', votes: 115, skinHead: 'https://i.imgur.com/Qv6W7Xy.png' },
-  { rank: 5, name: 'MinecraftLover', votes: 98, skinHead: 'https://imgur.com/a/keNHEth' },
+  { rank: 1, name: 'FathNooraa', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' },
+  { rank: 2, name: '.SkyLineosk', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' },
+  { rank: 3, name: '.ZennMC50', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' },
+  { rank: 4, name: '-', votes: 0, skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' },
+  { rank: 5, name: '-', votes: 0, skinHead: 'https://image2url.com/r2/default/images/1773191259836-b8fc2af9-08f4-4d21-85ba-6eec115786aa.jpg' },
 ];
 
 // Server Features
