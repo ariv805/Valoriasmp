@@ -107,7 +107,7 @@ export default function HomePage() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            🎮 Server Minecraft Survival Indonesia Terbaik
+            🎮Valoria SMP – Komunitas Survival Minecraft Terbaik di Indonesia.
           </motion.p>
 
           {/* Server Status Card */}
@@ -217,7 +217,7 @@ export default function HomePage() {
             >
               <a href={`minecraft://?addExternalServer=VALORIA SMP|${SERVER_IP}:${BEDROCK_PORT}`}>
                 <Gamepad2 className="w-4 h-4 mr-2" />
-                Add Server (Bedrock)
+                Click untuk Play
               </a>
             </Button>
           </motion.div>
