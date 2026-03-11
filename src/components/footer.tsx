@@ -24,7 +24,7 @@ export function Footer() {
           </span>
         </div>
         <p className="text-gray-400 text-xs">
-          © 2024 VALORIA SMP. All rights reserved.
+          © 2026 VALORIA SMP. All rights reserved.
         </p>
         <p className="text-gray-500 text-[10px] mt-1">
           Minecraft is a trademark of Mojang Studios
