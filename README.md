@@ -106,13 +106,13 @@ valoria-smp-website
 Clone repository:
 
 ```bash
-git clone https://github.com/username/valoria-smp-website.git
+git clone https://github.com/ariv805/Valoriasmp.git
 ```
 
 Masuk ke folder project:
 
 ```bash
-cd valoria-smp-website
+cd valoriasmp
 ```
 
 Install dependencies:
