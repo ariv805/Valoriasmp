@@ -36,7 +36,7 @@ type StoreItem = {
   popular?: boolean;
 };
 
-type PurchaseItemType = 'rank' | 'coins' | 'money' | 'skills';
+type PurchaseItemType = 'rank' | 'points' | 'money' | 'skills';
 
 export default function StorePage() {
   const [selectedItem, setSelectedItem] = useState<StoreItem | null>(null);
