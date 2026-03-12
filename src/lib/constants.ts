@@ -73,130 +73,37 @@ export const RANKS = [
 ];
 
 // ==========================================
-// POINTS PACKS - Konfigurasi pembelian Points
+// POINTS - Harga: Rp 5.000 / 1.500 Points
 // ==========================================
-export const POINTS_PACKS = [
-  {
-    id: 'points-1',
-    name: 'Starter Points',
-    amount: '5.000 Points',
-    price: 'Rp 10.000',
-    priceNum: 10000,
-    description: 'Cocok untuk pemula',
-    popular: false,
-  },
-  {
-    id: 'points-2',
-    name: 'Basic Points',
-    amount: '15.000 Points',
-    price: 'Rp 25.000',
-    priceNum: 25000,
-    description: 'Paket paling diminati',
-    popular: true,
-  },
-  {
-    id: 'points-3',
-    name: 'Premium Points',
-    amount: '35.000 Points',
-    price: 'Rp 50.000',
-    priceNum: 50000,
-    description: 'Best value untuk hemat',
-    popular: false,
-  },
-  {
-    id: 'points-4',
-    name: 'Ultimate Points',
-    amount: '80.000 Points',
-    price: 'Rp 100.000',
-    priceNum: 100000,
-    description: 'Paket terbesar hemat 20%',
-    popular: false,
-  },
-];
+export const POINTS_PRICE_PER_AMOUNT = 5000; // Rp 5.000
+export const POINTS_PER_PURCHASE = 1500; // 1.500 Points per Rp 5.000
 
 // ==========================================
-// MONEY PACKS - Konfigurasi pembelian In-Game Money
+// MONEY - Harga: Rp 1.000 / 50.000 Money
+// Format: k (ribu), m (juta), b (miliar), t (triliun)
 // ==========================================
-export const MONEY_PACKS = [
-  {
-    id: 'money-1',
-    name: 'Starter Money',
-    amount: '$100.000',
-    price: 'Rp 10.000',
-    priceNum: 10000,
-    description: 'Modal awal bermain',
-    popular: false,
-  },
-  {
-    id: 'money-2',
-    name: 'Basic Money',
-    amount: '$300.000',
-    price: 'Rp 25.000',
-    priceNum: 25000,
-    description: 'Paket populer',
-    popular: true,
-  },
-  {
-    id: 'money-3',
-    name: 'Premium Money',
-    amount: '$750.000',
-    price: 'Rp 50.000',
-    priceNum: 50000,
-    description: 'Nilai terbaik',
-    popular: false,
-  },
-  {
-    id: 'money-4',
-    name: 'Ultimate Money',
-    amount: '$2.000.000',
-    price: 'Rp 100.000',
-    priceNum: 100000,
-    description: 'Paket terbesar hemat 25%',
-    popular: false,
-  },
-];
+export const MONEY_PRICE_PER_AMOUNT = 1000; // Rp 1.000
+export const MONEY_PER_PURCHASE = 50000; // 50.000 Money per Rp 1.000
 
 // ==========================================
-// SKILLS PACKS - Konfigurasi pembelian Skills
+// SKILLS - Daftar skill yang tersedia
+// Harga: 1 Level = Rp 2.000
 // ==========================================
-export const SKILLS_PACKS = [
-  {
-    id: 'skills-1',
-    name: 'Starter Skills',
-    amount: '100 Skill Points',
-    price: 'Rp 15.000',
-    priceNum: 15000,
-    description: 'Untuk skill dasar',
-    popular: false,
-  },
-  {
-    id: 'skills-2',
-    name: 'Basic Skills',
-    amount: '300 Skill Points',
-    price: 'Rp 35.000',
-    priceNum: 35000,
-    description: 'Paling diminati',
-    popular: true,
-  },
-  {
-    id: 'skills-3',
-    name: 'Premium Skills',
-    amount: '750 Skill Points',
-    price: 'Rp 65.000',
-    priceNum: 65000,
-    description: 'Best value',
-    popular: false,
-  },
-  {
-    id: 'skills-4',
-    name: 'Ultimate Skills',
-    amount: '2.000 Skill Points',
-    price: 'Rp 120.000',
-    priceNum: 120000,
-    description: 'Maximize semua skill',
-    popular: false,
-  },
+export const AVAILABLE_SKILLS = [
+  'Farming',
+  'Foraging',
+  'Mining',
+  'Fishing',
+  'Excavation',
+  'Archery',
+  'Defense',
+  'Fighting',
+  'Agility',
+  'Enchanting',
+  'Alchemy',
 ];
+
+export const SKILL_PRICE_PER_LEVEL = 2000; // Rp 2.000 per level
 
 // Staff Members - Using regular image URLs
 export const STAFF_MEMBERS = [
