@@ -25,9 +25,6 @@ export const NAV_ITEMS = [
 export const RANKS = [
   {
     name: 'STREET',
-    price: 'Rp 15.000',
-    priceNum: 15000,
-    originalPrice: 'Rp 15.000',
     originalPriceNum: 15000,
     discount: 10,
     color: 'text-gray-400',
@@ -37,9 +34,6 @@ export const RANKS = [
   },
   {
     name: 'VALIANT',
-    price: 'Rp 35.000',
-    priceNum: 35000,
-    originalPrice: 'Rp 35.000',
     originalPriceNum: 35000,
     discount: 10,
     color: 'text-blue-400',
@@ -49,9 +43,6 @@ export const RANKS = [
   },
   {
     name: 'ASTRA',
-    price: 'Rp 65.000',
-    priceNum: 65000,
-    originalPrice: 'Rp 65.000',
     originalPriceNum: 65000,
     discount: 10,
     color: 'text-purple-400',
@@ -61,9 +52,6 @@ export const RANKS = [
   },
   {
     name: 'CRYSTALL',
-    price: 'Rp 120.000',
-    priceNum: 120000,
-    originalPrice: 'Rp 120.000',
     originalPriceNum: 120000,
     discount: 10,
     color: 'text-pink-400',
@@ -74,9 +62,6 @@ export const RANKS = [
   },
   {
     name: 'ETHEREAL',
-    price: 'Rp 150.000',
-    priceNum: 150000,
-    originalPrice: 'Rp 150.000',
     originalPriceNum: 150000,
     discount: 10,
     color: 'text-amber-400',
@@ -126,7 +111,7 @@ export const STAFF_MEMBERS = [
     name: 'FatihMC', 
     role: 'Owner', 
     roleColor: 'text-red-400', 
-    skinHead: 'https://image2url.com/r2/default/images/1773302158975-90eedc95-8851-457b-9fff-ab62b1a92b8d.jpg' 
+    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
   },
   { 
     name: 'ZennMC', 
