@@ -71,6 +71,131 @@ export const RANKS = [
     top: true,
   },
 ];
+// ==========================================
+// COINS PACKS - Konfigurasi pembelian Coins
+// ==========================================
+export const COINS_PACKS = [
+  {
+    id: 'coins-1',
+    name: 'Starter Coins',
+    amount: '5.000 Coins',
+    price: 'Rp 10.000',
+    priceNum: 10000,
+    description: 'Cocok untuk pemula',
+    popular: false,
+  },
+  {
+    id: 'coins-2',
+    name: 'Basic Coins',
+    amount: '15.000 Coins',
+    price: 'Rp 25.000',
+    priceNum: 25000,
+    description: 'Paket paling diminati',
+    popular: true,
+  },
+  {
+    id: 'coins-3',
+    name: 'Premium Coins',
+    amount: '35.000 Coins',
+    price: 'Rp 50.000',
+    priceNum: 50000,
+    description: 'Best value untuk hemat',
+    popular: false,
+  },
+  {
+    id: 'coins-4',
+    name: 'Ultimate Coins',
+    amount: '80.000 Coins',
+    price: 'Rp 100.000',
+    priceNum: 100000,
+    description: 'Paket terbesar hemat 20%',
+    popular: false,
+  },
+];
+
+// ==========================================
+// MONEY PACKS - Konfigurasi pembelian In-Game Money
+// ==========================================
+export const MONEY_PACKS = [
+  {
+    id: 'money-1',
+    name: 'Starter Money',
+    amount: '$100.000',
+    price: 'Rp 10.000',
+    priceNum: 10000,
+    description: 'Modal awal bermain',
+    popular: false,
+  },
+  {
+    id: 'money-2',
+    name: 'Basic Money',
+    amount: '$300.000',
+    price: 'Rp 25.000',
+    priceNum: 25000,
+    description: 'Paket populer',
+    popular: true,
+  },
+  {
+    id: 'money-3',
+    name: 'Premium Money',
+    amount: '$750.000',
+    price: 'Rp 50.000',
+    priceNum: 50000,
+    description: 'Nilai terbaik',
+    popular: false,
+  },
+  {
+    id: 'money-4',
+    name: 'Ultimate Money',
+    amount: '$2.000.000',
+    price: 'Rp 100.000',
+    priceNum: 100000,
+    description: 'Paket terbesar hemat 25%',
+    popular: false,
+  },
+];
+
+// ==========================================
+// SKILLS PACKS - Konfigurasi pembelian Skills
+// ==========================================
+export const SKILLS_PACKS = [
+  {
+    id: 'skills-1',
+    name: 'Starter Skills',
+    amount: '100 Skill Points',
+    price: 'Rp 15.000',
+    priceNum: 15000,
+    description: 'Untuk skill dasar',
+    popular: false,
+  },
+  {
+    id: 'skills-2',
+    name: 'Basic Skills',
+    amount: '300 Skill Points',
+    price: 'Rp 35.000',
+    priceNum: 35000,
+    description: 'Paling diminati',
+    popular: true,
+  },
+  {
+    id: 'skills-3',
+    name: 'Premium Skills',
+    amount: '750 Skill Points',
+    price: 'Rp 65.000',
+    priceNum: 65000,
+    description: 'Best value',
+    popular: false,
+  },
+  {
+    id: 'skills-4',
+    name: 'Ultimate Skills',
+    amount: '2.000 Skill Points',
+    price: 'Rp 120.000',
+    priceNum: 120000,
+    description: 'Maximize semua skill',
+    popular: false,
+  },
+];
 
 // Staff Members - Using regular image URLs
 export const STAFF_MEMBERS = [
