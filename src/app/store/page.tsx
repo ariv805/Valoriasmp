@@ -227,9 +227,9 @@ Mohon proses pembayaran saya. Terima kasih!`;
           </TabsContent>
 
           {/* Coins Tab */}
-          <TabsContent value="coins">
+          <TabsContent value="points">
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-              {COINS_PACKS.map((item) => renderItemCard(item, 'coins', Coins, 'from-amber-400 to-yellow-500'))}
+              {COINS_PACKS.map((item) => renderItemCard(item, 'coins', Points, 'from-amber-400 to-yellow-500'))}
             </div>
           </TabsContent>
 
