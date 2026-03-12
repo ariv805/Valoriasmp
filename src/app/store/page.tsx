@@ -159,7 +159,7 @@ Mohon proses pembayaran saya. Terima kasih!`;
             </TabsTrigger>
             <TabsTrigger value="coins" className="data-[state=active]:bg-emerald-500/20 text-xs">
               <Coins className="w-3 h-3 mr-1" />
-              Coins
+              Points
             </TabsTrigger>
             <TabsTrigger value="money" className="data-[state=active]:bg-emerald-500/20 text-xs">
               <Package className="w-3 h-3 mr-1" />
