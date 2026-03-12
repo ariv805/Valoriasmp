@@ -152,23 +152,18 @@ export const ACHIEVEMENTS = [
     event: 'Build Competition #1', 
     place: '1st Place',
     icon: '🏗️',
-    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
-    description: 'Membangun Masjid yang  megah dengan detail yang luar biasa'
+    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg',
+    description: 'Membangun Masjid yang megah dengan detail yang luar biasa'
   },
 ];
 
 // Top Voters - Using regular image URLs
 export const TOP_VOTERS = [
-  { rank: 1, name: 'SkyLineosk', votes: 2, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
-  },
-  { rank: 2, name: '.Vicky_wahyu', votes: 2, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
-  },
-  { rank: 3, name: 'FathNooraa', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
-  },
-  { rank: 4, name: '.ZennMC50', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
-  },
-  { rank: 5, name: '.Herobrine35210', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
-  },
+  { rank: 1, name: 'SkyLineosk', votes: 2, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' },
+  { rank: 2, name: '.Vicky_wahyu', votes: 2, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' },
+  { rank: 3, name: 'FathNooraa', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' },
+  { rank: 4, name: '.ZennMC50', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' },
+  { rank: 5, name: '.Herobrine35210', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' },
 ];
 
 // Server Features
