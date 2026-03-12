@@ -29,7 +29,7 @@ export const RANKS = [
     priceNum: 15000,
     color: 'text-gray-400',
     gradient: 'from-gray-500 to-gray-600',
-    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair', '/enderchest'],
+    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair','/pv1', '/enderchest'],
     bonus: { claimblock: '15.000', sethome: '6x', money: '$150.000' },
   },
   {
@@ -38,7 +38,7 @@ export const RANKS = [
     priceNum: 35000,
     color: 'text-blue-400',
     gradient: 'from-blue-500 to-blue-600',
-    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair', '/enderchest', '/fly'],
+    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair','/pv2', '/enderchest', '/fly'],
     bonus: { claimblock: '35.000', sethome: '9x', money: '$350.000' },
   },
   {
@@ -47,7 +47,7 @@ export const RANKS = [
     priceNum: 65000,
     color: 'text-purple-400',
     gradient: 'from-purple-500 to-purple-600',
-    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair', '/enderchest', '/fly', '/tp'],
+    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair','/pv3','/gkits', '/enderchest', '/fly', '/tp'],
     bonus: { claimblock: '70.000', sethome: '12x', money: '$600.000' },
   },
   {
@@ -56,7 +56,7 @@ export const RANKS = [
     priceNum: 120000,
     color: 'text-pink-400',
     gradient: 'from-pink-500 to-pink-600',
-    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair', '/enderchest', '/fly', '/tp', '/timeset', '/weather'],
+    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair','/pv4','/gkits', '/enderchest', '/fly', '/tp', '/timeset', '/weather'],
     bonus: { claimblock: '100.000', sethome: '15x', money: '$1.000.000' },
     popular: true,
   },
@@ -66,7 +66,7 @@ export const RANKS = [
     priceNum: 150000,
     color: 'text-amber-400',
     gradient: 'from-amber-400 to-orange-500',
-    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair', '/enderchest', '/fly', '/tp', '/timeset', '/weather', '/god'],
+    features: ['/feed', '/heal', '/anvil', '/workbench', '/repair','/pv5','/gkits', '/enderchest', '/fly', '/tp', '/timeset', '/weather', '/god'],
     bonus: { claimblock: '150.000', sethome: '18x', money: '$1.500.000' },
     top: true,
   },
@@ -111,7 +111,7 @@ export const STAFF_MEMBERS = [
     name: 'FatihMC', 
     role: 'Owner', 
     roleColor: 'text-red-400', 
-    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
+    skinHead: 'https://image2url.com/r2/default/images/1773302158975-90eedc95-8851-457b-9fff-ab62b1a92b8d.jpg' 
   },
   { 
     name: 'ZennMC', 
