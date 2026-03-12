@@ -86,11 +86,14 @@ export default function StorePage() {
     const playerNameFormatted = platform === 'bedrock' ? `.${playerName}` : playerName;
 
     if (purchaseType === 'rank' && selectedRank) {
+      const discountInfo = selectedRank.discount 
+        ? `\n- Diskon: ${selectedRank.discount}% ( dari ${selectedRank.originalPrice} )` 
+        : '';
       message = `Halo, saya ingin membeli rank *${selectedRank.name}*
 
 📦 Detail Pembelian:
 - Rank: ${selectedRank.name}
-- Harga: ${selectedRank.price}
+- Harga: ${selectedRank.price}${discountInfo}
 - Nama Player: ${playerNameFormatted}
 - Platform: ${platform.toUpperCase()}
 
@@ -212,20 +215,34 @@ Mohon proses pembayaran saya. Terima kasih!`;
                     transition={{ delay: index * 0.05 }}
                     className="relative"
                   >
-                    {rank.popular && (
+                    {/* Discount Badge */}
+                    {rank.discount && (
                       <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-                        <Badge className="bg-pink-500 text-white text-xs">BEST VALUE</Badge>
+                        <Badge className="bg-red-500 text-white text-xs font-bold animate-pulse">
+                          -{rank.discount}%
+                        </Badge>
+                      </div>
+                    )}
+                    {rank.popular && (
+                      <div className="absolute -top-2 right-2 z-10">
+                        <Badge className="bg-pink-500 text-white text-[10px]">BEST VALUE</Badge>
                       </div>
                     )}
                     {rank.top && (
-                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-                        <Badge className="bg-gradient-to-r from-amber-400 to-orange-500 text-black text-xs">TOP RANK</Badge>
+                      <div className="absolute -top-2 right-2 z-10">
+                        <Badge className="bg-gradient-to-r from-amber-400 to-orange-500 text-black text-[10px]">TOP RANK</Badge>
                       </div>
                     )}
                     <Card className={`glass border-0 h-full hover:scale-[1.02] transition-all duration-300 ${rank.top ? 'glow-gold' : rank.popular ? 'glow-purple' : ''}`}>
                       <CardHeader className="text-center pb-1 pt-4">
                         <div className={`text-lg font-bold mb-1 font-minecraft ${rank.color}`}>{rank.name}</div>
-                        <div className="text-lg font-bold text-white">{rank.price}</div>
+                        {/* Price with discount */}
+                        <div className="flex flex-col items-center gap-0.5">
+                          {rank.originalPrice && (
+                            <span className="text-sm text-gray-500 line-through">{rank.originalPrice}</span>
+                          )}
+                          <span className="text-lg font-bold text-white">{rank.price}</span>
+                        </div>
                       </CardHeader>
                       <CardContent className="space-y-3">
                         <div>
@@ -505,6 +522,12 @@ Mohon proses pembayaran saya. Terima kasih!`;
               <div className="p-3 rounded-lg bg-white/5 space-y-1">
                 <p className="text-xs text-gray-400">Detail:</p>
                 <p className="font-semibold text-white text-sm">Rank: <span className={selectedRank.color}>{selectedRank.name}</span></p>
+                {selectedRank.originalPrice && selectedRank.discount && (
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-gray-500 line-through">{selectedRank.originalPrice}</span>
+                    <Badge className="bg-red-500 text-white text-[10px]">-{selectedRank.discount}%</Badge>
+                  </div>
+                )}
                 <p className="text-emerald-400 font-bold text-sm">{selectedRank.price}</p>
               </div>
             )}
