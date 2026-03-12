@@ -108,86 +108,67 @@ export const SKILL_PRICE_PER_LEVEL = 2000; // Rp 2.000 per level
 // Staff Members - Using regular image URLs
 export const STAFF_MEMBERS = [
   { 
-    name: 'Valoria', 
+    name: 'FatihMC', 
     role: 'Owner', 
     roleColor: 'text-red-400', 
-    skinHead: 'https://i.imgur.com/8Kf5EQM.png' 
+    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
   },
   { 
-    name: 'NeroX', 
+    name: 'ZennMC', 
     role: 'Admin', 
     roleColor: 'text-orange-400', 
-    skinHead: 'https://i.imgur.com/7Xl5P6M.png' 
+    skinHead: 'https://image2url.com/r2/default/images/1773300294354-e0b23ef2-f60f-4a91-9566-1b53af50e0eb.png'
   },
   { 
-    name: 'DarkKnight', 
+    name: 'Belum ada', 
     role: 'Admin', 
     roleColor: 'text-orange-400', 
-    skinHead: 'https://i.imgur.com/9Yq3P8N.png' 
+    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
   },
   { 
-    name: 'ShadowMist', 
+    name: 'Belum ada', 
     role: 'Helper', 
     roleColor: 'text-green-400', 
-    skinHead: 'https://i.imgur.com/2Wk4R7L.png' 
+    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
   },
   { 
-    name: 'LightBringer', 
+    name: 'Belum ada', 
     role: 'Helper', 
     roleColor: 'text-green-400', 
-    skinHead: 'https://i.imgur.com/5Tm3K9P.png' 
+    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
   },
   { 
-    name: 'CreativePro', 
+    name: 'Belum ada', 
     role: 'Creator', 
     roleColor: 'text-purple-400', 
-    skinHead: 'https://i.imgur.com/4Ln8V2Q.png' 
+    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
   },
 ];
 
 // Achievements - Using regular image URLs
 export const ACHIEVEMENTS = [
   { 
-    name: 'ChampionBuilder', 
+    name: 'BiyannCraft', 
     event: 'Build Competition #1', 
     place: '1st Place',
     icon: '🏗️',
-    skinHead: 'https://i.imgur.com/Jf3K8Lm.png',
-    description: 'Membangun kastil megah dengan detail yang luar biasa'
-  },
-  { 
-    name: 'PvPMaster', 
-    event: 'PvP Tournament', 
-    place: '1st Place',
-    icon: '⚔️',
-    skinHead: 'https://i.imgur.com/Kp5M9Nn.png',
-    description: 'Tak terkalahkan dalam turnamen PvP'
-  },
-  { 
-    name: 'SpeedRunner', 
-    event: 'Speedrun Challenge', 
-    place: '1st Place',
-    icon: '🏃',
-    skinHead: 'https://i.imgur.com/Lq7N2Pp.png',
-    description: 'Menyelesaikan challenge dalam waktu tercepat'
-  },
-  { 
-    name: 'RedstoneEngineer', 
-    event: 'Redstone Contest', 
-    place: '1st Place',
-    icon: '⚡',
-    skinHead: 'https://i.imgur.com/Mr9Q4Rs.png',
-    description: 'Membuat mesin redstone paling kompleks'
+    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
+    description: 'Membangun Masjid yang  megah dengan detail yang luar biasa'
   },
 ];
 
 // Top Voters - Using regular image URLs
 export const TOP_VOTERS = [
-  { rank: 1, name: 'DiamondKing', votes: 156, skinHead: 'https://i.imgur.com/Ns1T2Uv.png' },
-  { rank: 2, name: 'VoteChampion', votes: 142, skinHead: 'https://i.imgur.com/Ot3U4Vw.png' },
-  { rank: 3, name: 'LoyalPlayer', votes: 128, skinHead: 'https://i.imgur.com/Pu5V6Wx.png' },
-  { rank: 4, name: 'ServerFan', votes: 115, skinHead: 'https://i.imgur.com/Qv6W7Xy.png' },
-  { rank: 5, name: 'MinecraftLover', votes: 98, skinHead: 'https://i.imgur.com/Rw7X8Yz.png' },
+  { rank: 1, name: 'SkyLineosk', votes: 2, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
+  },
+  { rank: 2, name: '.Vicky_wahyu', votes: 2, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
+  },
+  { rank: 3, name: 'FathNooraa', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
+  },
+  { rank: 4, name: '.ZennMC50', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
+  },
+  { rank: 5, name: '.Herobrine35210', votes: 1, skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
+  },
 ];
 
 // Server Features
