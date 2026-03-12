@@ -55,6 +55,16 @@ function formatMoney(num: number): string {
   return num.toString();
 }
 
+// Format price to Rupiah string
+function formatRupiah(num: number): string {
+  return `Rp ${num.toLocaleString('id-ID')}`;
+}
+
+// Calculate discounted price
+function calculateDiscountedPrice(originalPrice: number, discount: number): number {
+  return Math.floor(originalPrice * (1 - discount / 100));
+}
+
 export default function StorePage() {
   const [selectedRank, setSelectedRank] = useState<typeof RANKS[0] | null>(null);
   const [purchaseDialogOpen, setPurchaseDialogOpen] = useState(false);
@@ -86,14 +96,16 @@ export default function StorePage() {
     const playerNameFormatted = platform === 'bedrock' ? `.${playerName}` : playerName;
 
     if (purchaseType === 'rank' && selectedRank) {
-      const discountInfo = selectedRank.discount 
-        ? `\n- Diskon: ${selectedRank.discount}% ( dari ${selectedRank.originalPrice} )` 
+      const originalPrice = selectedRank.originalPriceNum;
+      const discountedPrice = calculateDiscountedPrice(originalPrice, selectedRank.discount);
+      const discountInfo = selectedRank.discount > 0 
+        ? `\n- Diskon: ${selectedRank.discount}% (dari ${formatRupiah(originalPrice)})` 
         : '';
       message = `Halo, saya ingin membeli rank *${selectedRank.name}*
 
 📦 Detail Pembelian:
 - Rank: ${selectedRank.name}
-- Harga: ${selectedRank.price}${discountInfo}
+- Harga: ${formatRupiah(discountedPrice)}${discountInfo}
 - Nama Player: ${playerNameFormatted}
 - Platform: ${platform.toUpperCase()}
 
@@ -207,69 +219,74 @@ Mohon proses pembayaran saya. Terima kasih!`;
             {/* Ranks Tab */}
             <TabsContent value="ranks">
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-                {RANKS.map((rank, index) => (
-                  <motion.div
-                    key={rank.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.05 }}
-                    className="relative"
-                  >
-                    {/* Discount Badge */}
-                    {rank.discount && (
-                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-                        <Badge className="bg-red-500 text-white text-xs font-bold animate-pulse">
-                          -{rank.discount}%
-                        </Badge>
-                      </div>
-                    )}
-                    {rank.popular && (
-                      <div className="absolute -top-2 right-2 z-10">
-                        <Badge className="bg-pink-500 text-white text-[10px]">BEST VALUE</Badge>
-                      </div>
-                    )}
-                    {rank.top && (
-                      <div className="absolute -top-2 right-2 z-10">
-                        <Badge className="bg-gradient-to-r from-amber-400 to-orange-500 text-black text-[10px]">TOP RANK</Badge>
-                      </div>
-                    )}
-                    <Card className={`glass border-0 h-full hover:scale-[1.02] transition-all duration-300 ${rank.top ? 'glow-gold' : rank.popular ? 'glow-purple' : ''}`}>
-                      <CardHeader className="text-center pb-1 pt-4">
-                        <div className={`text-lg font-bold mb-1 font-minecraft ${rank.color}`}>{rank.name}</div>
-                        {/* Price with discount */}
-                        <div className="flex flex-col items-center gap-0.5">
-                          {rank.originalPrice && (
-                            <span className="text-sm text-gray-500 line-through">{rank.originalPrice}</span>
-                          )}
-                          <span className="text-lg font-bold text-white">{rank.price}</span>
+                {RANKS.map((rank, index) => {
+                  const originalPrice = rank.originalPriceNum;
+                  const discountedPrice = calculateDiscountedPrice(originalPrice, rank.discount);
+                  
+                  return (
+                    <motion.div
+                      key={rank.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="relative"
+                    >
+                      {/* Discount Badge */}
+                      {rank.discount > 0 && (
+                        <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
+                          <Badge className="bg-red-500 text-white text-xs font-bold animate-pulse">
+                            -{rank.discount}%
+                          </Badge>
                         </div>
-                      </CardHeader>
-                      <CardContent className="space-y-3">
-                        <div>
-                          <p className="text-xs text-gray-400 mb-1">FITUR:</p>
-                          <div className="flex flex-wrap gap-0.5">
-                            {rank.features.map((feature) => (
-                              <Badge key={feature} variant="secondary" className="text-[10px] bg-white/10 px-1.5 py-0">
-                                {feature}
-                              </Badge>
-                            ))}
+                      )}
+                      {rank.popular && (
+                        <div className="absolute -top-2 right-2 z-10">
+                          <Badge className="bg-pink-500 text-white text-[10px]">BEST VALUE</Badge>
+                        </div>
+                      )}
+                      {rank.top && (
+                        <div className="absolute -top-2 right-2 z-10">
+                          <Badge className="bg-gradient-to-r from-amber-400 to-orange-500 text-black text-[10px]">TOP RANK</Badge>
+                        </div>
+                      )}
+                      <Card className={`glass border-0 h-full hover:scale-[1.02] transition-all duration-300 ${rank.top ? 'glow-gold' : rank.popular ? 'glow-purple' : ''}`}>
+                        <CardHeader className="text-center pb-1 pt-4">
+                          <div className={`text-lg font-bold mb-1 font-minecraft ${rank.color}`}>{rank.name}</div>
+                          {/* Price with discount */}
+                          <div className="flex flex-col items-center gap-0.5">
+                            {rank.discount > 0 && (
+                              <span className="text-sm text-gray-500 line-through">{formatRupiah(originalPrice)}</span>
+                            )}
+                            <span className="text-lg font-bold text-white">{formatRupiah(discountedPrice)}</span>
                           </div>
-                        </div>
-                        <div className="space-y-0.5 text-xs">
-                          <p className="text-gray-400">🎁 <span className="text-emerald-400">{rank.bonus.claimblock}</span> claimblock</p>
-                          <p className="text-gray-400">🏠 <span className="text-emerald-400">{rank.bonus.sethome}</span> sethome</p>
-                          <p className="text-gray-400">💰 <span className="text-emerald-400">{rank.bonus.money}</span></p>
-                        </div>
-                        <Button 
-                          onClick={() => openRankPurchaseDialog(rank)}
-                          className={`w-full bg-gradient-to-r ${rank.gradient} hover:opacity-90 text-white text-sm h-8`}
-                        >
-                          Beli Sekarang
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
+                        </CardHeader>
+                        <CardContent className="space-y-3">
+                          <div>
+                            <p className="text-xs text-gray-400 mb-1">FITUR:</p>
+                            <div className="flex flex-wrap gap-0.5">
+                              {rank.features.map((feature) => (
+                                <Badge key={feature} variant="secondary" className="text-[10px] bg-white/10 px-1.5 py-0">
+                                  {feature}
+                                </Badge>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="space-y-0.5 text-xs">
+                            <p className="text-gray-400">🎁 <span className="text-emerald-400">{rank.bonus.claimblock}</span> claimblock</p>
+                            <p className="text-gray-400">🏠 <span className="text-emerald-400">{rank.bonus.sethome}</span> sethome</p>
+                            <p className="text-gray-400">💰 <span className="text-emerald-400">{rank.bonus.money}</span></p>
+                          </div>
+                          <Button 
+                            onClick={() => openRankPurchaseDialog(rank)}
+                            className={`w-full bg-gradient-to-r ${rank.gradient} hover:opacity-90 text-white text-sm h-8`}
+                          >
+                            Beli Sekarang
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
+                  );
+                })}
               </div>
             </TabsContent>
 
@@ -522,13 +539,13 @@ Mohon proses pembayaran saya. Terima kasih!`;
               <div className="p-3 rounded-lg bg-white/5 space-y-1">
                 <p className="text-xs text-gray-400">Detail:</p>
                 <p className="font-semibold text-white text-sm">Rank: <span className={selectedRank.color}>{selectedRank.name}</span></p>
-                {selectedRank.originalPrice && selectedRank.discount && (
+                {selectedRank.discount > 0 && (
                   <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-500 line-through">{selectedRank.originalPrice}</span>
+                    <span className="text-xs text-gray-500 line-through">{formatRupiah(selectedRank.originalPriceNum)}</span>
                     <Badge className="bg-red-500 text-white text-[10px]">-{selectedRank.discount}%</Badge>
                   </div>
                 )}
-                <p className="text-emerald-400 font-bold text-sm">{selectedRank.price}</p>
+                <p className="text-emerald-400 font-bold text-sm">{formatRupiah(calculateDiscountedPrice(selectedRank.originalPriceNum, selectedRank.discount))}</p>
               </div>
             )}
             
