@@ -25,28 +25,52 @@ import {
 } from '@/components/ui/select';
 import { toast } from '@/hooks/use-toast';
 import { PageWrapper } from '@/components/page-wrapper';
-import { RANKS, POINTS_PACKS, MONEY_PACKS, SKILLS_PACKS, WHATSAPP_NUMBER } from '@/lib/constants';
-
-// Type for store items
-type StoreItem = {
-  id: string;
-  name: string;
-  amount: string;
-  price: string;
-  priceNum: number;
-  description: string;
-  popular?: boolean;
-};
+import { 
+  RANKS, 
+  AVAILABLE_SKILLS, 
+  SKILL_PRICE_PER_LEVEL, 
+  WHATSAPP_NUMBER,
+  POINTS_PRICE_PER_AMOUNT,
+  POINTS_PER_PURCHASE,
+  MONEY_PRICE_PER_AMOUNT,
+  MONEY_PER_PURCHASE
+} from '@/lib/constants';
 
 type PurchaseItemType = 'rank' | 'points' | 'money' | 'skills';
 
+// Format number with k, m, b, t suffixes
+function formatMoney(num: number): string {
+  if (num >= 1_000_000_000_000) {
+    return (num / 1_000_000_000_000).toFixed(1).replace(/\.0$/, '') + 't';
+  }
+  if (num >= 1_000_000_000) {
+    return (num / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'b';
+  }
+  if (num >= 1_000_000) {
+    return (num / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'm';
+  }
+  if (num >= 1_000) {
+    return (num / 1_000).toFixed(1).replace(/\.0$/, '') + 'k';
+  }
+  return num.toString();
+}
+
 export default function StorePage() {
-  const [selectedItem, setSelectedItem] = useState<StoreItem | null>(null);
   const [selectedRank, setSelectedRank] = useState<typeof RANKS[0] | null>(null);
   const [purchaseDialogOpen, setPurchaseDialogOpen] = useState(false);
   const [playerName, setPlayerName] = useState('');
   const [platform, setPlatform] = useState('java');
   const [purchaseType, setPurchaseType] = useState<PurchaseItemType>('rank');
+  
+  // Skills state
+  const [selectedSkill, setSelectedSkill] = useState<string>('');
+  const [skillLevel, setSkillLevel] = useState<number>(1);
+  
+  // Points state (price in Rupiah)
+  const [pointsPrice, setPointsPrice] = useState<number>(0);
+  
+  // Money state (price in Rupiah)
+  const [moneyPrice, setMoneyPrice] = useState<number>(0);
 
   const handlePurchase = () => {
     if (!playerName.trim()) {
@@ -71,13 +95,39 @@ export default function StorePage() {
 - Platform: ${platform.toUpperCase()}
 
 Mohon proses pembayaran saya. Terima kasih!`;
-    } else if (selectedItem) {
-      message = `Halo, saya ingin membeli *${selectedItem.name}*
+    } else if (purchaseType === 'skills' && selectedSkill) {
+      const totalPrice = skillLevel * SKILL_PRICE_PER_LEVEL;
+      const formattedPrice = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+      message = `Halo, saya ingin membeli *Skill Level*
 
 📦 Detail Pembelian:
-- Item: ${selectedItem.name}
-- Jumlah: ${selectedItem.amount}
-- Harga: ${selectedItem.price}
+- Skill: ${selectedSkill}
+- Level: ${skillLevel} Level
+- Harga: ${formattedPrice}
+- Nama Player: ${playerNameFormatted}
+- Platform: ${platform.toUpperCase()}
+
+Mohon proses pembayaran saya. Terima kasih!`;
+    } else if (purchaseType === 'points') {
+      const multiplier = Math.floor(pointsPrice / POINTS_PRICE_PER_AMOUNT);
+      const totalPoints = multiplier * POINTS_PER_PURCHASE;
+      message = `Halo, saya ingin membeli *Points*
+
+📦 Detail Pembelian:
+- Jumlah: ${totalPoints.toLocaleString('id-ID')} Points
+- Harga: Rp ${pointsPrice.toLocaleString('id-ID')}
+- Nama Player: ${playerNameFormatted}
+- Platform: ${platform.toUpperCase()}
+
+Mohon proses pembayaran saya. Terima kasih!`;
+    } else if (purchaseType === 'money') {
+      const multiplier = Math.floor(moneyPrice / MONEY_PRICE_PER_AMOUNT);
+      const totalMoney = multiplier * MONEY_PER_PURCHASE;
+      message = `Halo, saya ingin membeli *In-Game Money*
+
+📦 Detail Pembelian:
+- Jumlah: $${formatMoney(totalMoney)} (${totalMoney.toLocaleString('id-ID')})
+- Harga: Rp ${moneyPrice.toLocaleString('id-ID')}
 - Nama Player: ${playerNameFormatted}
 - Platform: ${platform.toUpperCase()}
 
@@ -88,59 +138,34 @@ Mohon proses pembayaran saya. Terima kasih!`;
     window.open(whatsappUrl, '_blank');
     setPurchaseDialogOpen(false);
     setPlayerName('');
-    setSelectedItem(null);
     setSelectedRank(null);
   };
 
   const openRankPurchaseDialog = (rank: typeof RANKS[0]) => {
     setSelectedRank(rank);
-    setSelectedItem(null);
     setPurchaseType('rank');
     setPurchaseDialogOpen(true);
   };
 
-  const openItemPurchaseDialog = (item: StoreItem, type: PurchaseItemType) => {
-    setSelectedItem(item);
+  const openPointsPurchaseDialog = () => {
     setSelectedRank(null);
-    setPurchaseType(type);
+    setSelectedSkill('');
+    setPurchaseType('points');
     setPurchaseDialogOpen(true);
   };
 
-  // Render item card for Points/Money/Skills
-  const renderItemCard = (item: StoreItem, type: PurchaseItemType, Icon: React.ComponentType<{ className?: string }>, gradient: string) => (
-    <motion.div
-      key={item.id}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.05 }}
-      className="relative"
-    >
-      {item.popular && (
-        <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-          <Badge className="bg-emerald-500 text-white text-xs">POPULER</Badge>
-        </div>
-      )}
-      <Card className={`glass border-0 text-center hover:scale-[1.02] transition-transform h-full ${item.popular ? 'glow-green' : ''}`}>
-        <CardHeader className="py-4">
-          <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${gradient} flex items-center justify-center mx-auto mb-3`}>
-            <Icon className="w-7 h-7 text-white" />
-          </div>
-          <CardTitle className="text-base">{item.name}</CardTitle>
-          <p className="text-2xl font-bold text-amber-400">{item.amount}</p>
-        </CardHeader>
-        <CardContent className="pt-0">
-          <p className="text-gray-400 text-xs mb-3">{item.description}</p>
-          <p className="text-lg font-bold text-emerald-400 mb-3">{item.price}</p>
-          <Button 
-            onClick={() => openItemPurchaseDialog(item, type)}
-            className="w-full bg-emerald-500 hover:bg-emerald-600 text-sm h-9"
-          >
-            Beli Sekarang
-          </Button>
-        </CardContent>
-      </Card>
-    </motion.div>
-  );
+  const openMoneyPurchaseDialog = () => {
+    setSelectedRank(null);
+    setSelectedSkill('');
+    setPurchaseType('money');
+    setPurchaseDialogOpen(true);
+  };
+
+  const openSkillPurchaseDialog = () => {
+    setSelectedRank(null);
+    setPurchaseType('skills');
+    setPurchaseDialogOpen(true);
+  };
 
   return (
     <PageWrapper>
@@ -233,23 +258,197 @@ Mohon proses pembayaran saya. Terima kasih!`;
 
             {/* Points Tab */}
             <TabsContent value="points">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                {POINTS_PACKS.map((item) => renderItemCard(item, 'points', Star, 'from-amber-400 to-yellow-500'))}
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-md mx-auto"
+              >
+                <Card className="glass border-0">
+                  <CardHeader className="text-center pb-2">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-400 to-yellow-500 flex items-center justify-center mx-auto mb-3">
+                      <Star className="w-7 h-7 text-white" />
+                    </div>
+                    <CardTitle className="text-lg">Beli Points</CardTitle>
+                    <p className="text-emerald-400 font-semibold">Rp {POINTS_PRICE_PER_AMOUNT.toLocaleString('id-ID')} / {POINTS_PER_PURCHASE.toLocaleString('id-ID')} Points</p>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label className="text-sm text-gray-300">Masukkan Harga (Rp)</Label>
+                      <Input
+                        type="number"
+                        min="0"
+                        value={pointsPrice || ''}
+                        onChange={(e) => setPointsPrice(parseInt(e.target.value) || 0)}
+                        className="bg-white/5 border-white/10"
+                        placeholder="Contoh: 10000"
+                      />
+                      <p className="text-xs text-gray-500">Rp {POINTS_PRICE_PER_AMOUNT.toLocaleString('id-ID')} = {POINTS_PER_PURCHASE.toLocaleString('id-ID')} Points</p>
+                    </div>
+                    
+                    <div className="p-4 rounded-lg bg-white/5 space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Total Points:</span>
+                        <span className="text-amber-400 font-bold text-lg">
+                          {pointsPrice > 0 ? (Math.floor(pointsPrice / POINTS_PRICE_PER_AMOUNT) * POINTS_PER_PURCHASE).toLocaleString('id-ID') : '0'} Points
+                        </span>
+                      </div>
+                      <div className="border-t border-white/10 pt-2 mt-2">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Total Harga:</span>
+                          <span className="text-emerald-400 font-bold text-lg">
+                            Rp {pointsPrice.toLocaleString('id-ID')}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      onClick={openPointsPurchaseDialog}
+                      disabled={pointsPrice < POINTS_PRICE_PER_AMOUNT}
+                      className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:opacity-90"
+                    >
+                      Beli Sekarang
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </TabsContent>
 
             {/* Money Tab */}
             <TabsContent value="money">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                {MONEY_PACKS.map((item) => renderItemCard(item, 'money', Package, 'from-green-400 to-emerald-500'))}
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-md mx-auto"
+              >
+                <Card className="glass border-0">
+                  <CardHeader className="text-center pb-2">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center mx-auto mb-3">
+                      <Package className="w-7 h-7 text-white" />
+                    </div>
+                    <CardTitle className="text-lg">Beli In-Game Money</CardTitle>
+                    <p className="text-emerald-400 font-semibold">Rp {MONEY_PRICE_PER_AMOUNT.toLocaleString('id-ID')} / {formatMoney(MONEY_PER_PURCHASE)} Money</p>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label className="text-sm text-gray-300">Masukkan Harga (Rp)</Label>
+                      <Input
+                        type="number"
+                        min="0"
+                        value={moneyPrice || ''}
+                        onChange={(e) => setMoneyPrice(parseInt(e.target.value) || 0)}
+                        className="bg-white/5 border-white/10"
+                        placeholder="Contoh: 5000"
+                      />
+                      <p className="text-xs text-gray-500">Rp {MONEY_PRICE_PER_AMOUNT.toLocaleString('id-ID')} = {formatMoney(MONEY_PER_PURCHASE)} Money</p>
+                    </div>
+                    
+                    <div className="p-4 rounded-lg bg-white/5 space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Total Money:</span>
+                        <span className="text-amber-400 font-bold text-lg">
+                          ${moneyPrice > 0 ? formatMoney(Math.floor(moneyPrice / MONEY_PRICE_PER_AMOUNT) * MONEY_PER_PURCHASE) : '0'}
+                        </span>
+                      </div>
+                      <p className="text-xs text-gray-500 text-right">
+                        ({moneyPrice > 0 ? (Math.floor(moneyPrice / MONEY_PRICE_PER_AMOUNT) * MONEY_PER_PURCHASE).toLocaleString('id-ID') : '0'})
+                      </p>
+                      <div className="border-t border-white/10 pt-2 mt-2">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Total Harga:</span>
+                          <span className="text-emerald-400 font-bold text-lg">
+                            Rp {moneyPrice.toLocaleString('id-ID')}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      onClick={openMoneyPurchaseDialog}
+                      disabled={moneyPrice < MONEY_PRICE_PER_AMOUNT}
+                      className="w-full bg-gradient-to-r from-green-500 to-emerald-500 hover:opacity-90"
+                    >
+                      Beli Sekarang
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </TabsContent>
 
             {/* Skills Tab */}
             <TabsContent value="skills">
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
-                {SKILLS_PACKS.map((item) => renderItemCard(item, 'skills', Zap, 'from-purple-400 to-violet-500'))}
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-md mx-auto"
+              >
+                <Card className="glass border-0">
+                  <CardHeader className="text-center pb-2">
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-purple-400 to-violet-500 flex items-center justify-center mx-auto mb-3">
+                      <Zap className="w-7 h-7 text-white" />
+                    </div>
+                    <CardTitle className="text-lg">Beli Skill Level</CardTitle>
+                    <p className="text-emerald-400 font-semibold">Rp {SKILL_PRICE_PER_LEVEL.toLocaleString('id-ID')} / Level</p>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div className="space-y-2">
+                      <Label className="text-sm text-gray-300">Pilih Skill</Label>
+                      <Select value={selectedSkill} onValueChange={setSelectedSkill}>
+                        <SelectTrigger className="bg-white/5 border-white/10">
+                          <SelectValue placeholder="Pilih skill yang ingin di-upgrade" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {AVAILABLE_SKILLS.map((skill) => (
+                            <SelectItem key={skill} value={skill}>
+                              {skill}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <Label className="text-sm text-gray-300">Jumlah Level</Label>
+                      <Input
+                        type="number"
+                        min="1"
+                        max="1000"
+                        value={skillLevel}
+                        onChange={(e) => setSkillLevel(Math.max(1, parseInt(e.target.value) || 1))}
+                        className="bg-white/5 border-white/10"
+                        placeholder="Masukkan jumlah level"
+                      />
+                    </div>
+                    
+                    <div className="p-4 rounded-lg bg-white/5 space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Skill:</span>
+                        <span className="text-white font-medium">{selectedSkill || '-'}</span>
+                      </div>
+                      <div className="flex justify-between text-sm">
+                        <span className="text-gray-400">Level:</span>
+                        <span className="text-amber-400 font-medium">{skillLevel} Level</span>
+                      </div>
+                      <div className="border-t border-white/10 pt-2 mt-2">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400">Total Harga:</span>
+                          <span className="text-emerald-400 font-bold text-lg">
+                            Rp {(skillLevel * SKILL_PRICE_PER_LEVEL).toLocaleString('id-ID')}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <Button 
+                      onClick={openSkillPurchaseDialog}
+                      disabled={!selectedSkill}
+                      className="w-full bg-gradient-to-r from-purple-500 to-violet-500 hover:opacity-90"
+                    >
+                      Beli Sekarang
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </TabsContent>
           </Tabs>
         </div>
@@ -262,9 +461,13 @@ Mohon proses pembayaran saya. Terima kasih!`;
             <DialogTitle className="text-lg font-minecraft text-amber-400">
               {purchaseType === 'rank' && selectedRank 
                 ? `Beli Rank ${selectedRank.name}` 
-                : selectedItem 
-                  ? `Beli ${selectedItem.name}` 
-                  : 'Beli Item'}
+                : purchaseType === 'skills' 
+                  ? 'Beli Skill Level' 
+                  : purchaseType === 'points'
+                    ? 'Beli Points'
+                    : purchaseType === 'money'
+                      ? 'Beli In-Game Money'
+                      : 'Beli Item'}
             </DialogTitle>
             <DialogDescription className="text-sm">
               Isi data untuk melanjutkan pembelian via WhatsApp
@@ -297,7 +500,7 @@ Mohon proses pembayaran saya. Terima kasih!`;
               )}
             </div>
             
-            {/* Item Detail */}
+            {/* Rank Detail */}
             {selectedRank && purchaseType === 'rank' && (
               <div className="p-3 rounded-lg bg-white/5 space-y-1">
                 <p className="text-xs text-gray-400">Detail:</p>
@@ -306,12 +509,33 @@ Mohon proses pembayaran saya. Terima kasih!`;
               </div>
             )}
             
-            {selectedItem && purchaseType !== 'rank' && (
+            {/* Points Detail */}
+            {purchaseType === 'points' && (
               <div className="p-3 rounded-lg bg-white/5 space-y-1">
                 <p className="text-xs text-gray-400">Detail:</p>
-                <p className="font-semibold text-white text-sm">{selectedItem.name}</p>
-                <p className="text-amber-400 text-sm">{selectedItem.amount}</p>
-                <p className="text-emerald-400 font-bold text-sm">{selectedItem.price}</p>
+                <p className="font-semibold text-white text-sm">Points</p>
+                <p className="text-amber-400 text-sm">{(Math.floor(pointsPrice / POINTS_PRICE_PER_AMOUNT) * POINTS_PER_PURCHASE).toLocaleString('id-ID')} Points</p>
+                <p className="text-emerald-400 font-bold text-sm">Rp {pointsPrice.toLocaleString('id-ID')}</p>
+              </div>
+            )}
+            
+            {/* Money Detail */}
+            {purchaseType === 'money' && (
+              <div className="p-3 rounded-lg bg-white/5 space-y-1">
+                <p className="text-xs text-gray-400">Detail:</p>
+                <p className="font-semibold text-white text-sm">In-Game Money</p>
+                <p className="text-amber-400 text-sm">${formatMoney(Math.floor(moneyPrice / MONEY_PRICE_PER_AMOUNT) * MONEY_PER_PURCHASE)} ({(Math.floor(moneyPrice / MONEY_PRICE_PER_AMOUNT) * MONEY_PER_PURCHASE).toLocaleString('id-ID')})</p>
+                <p className="text-emerald-400 font-bold text-sm">Rp {moneyPrice.toLocaleString('id-ID')}</p>
+              </div>
+            )}
+            
+            {/* Skills Detail */}
+            {purchaseType === 'skills' && selectedSkill && (
+              <div className="p-3 rounded-lg bg-white/5 space-y-1">
+                <p className="text-xs text-gray-400">Detail:</p>
+                <p className="font-semibold text-white text-sm">Skill: <span className="text-purple-400">{selectedSkill}</span></p>
+                <p className="text-amber-400 text-sm">{skillLevel} Level</p>
+                <p className="text-emerald-400 font-bold text-sm">Rp {(skillLevel * SKILL_PRICE_PER_LEVEL).toLocaleString('id-ID')}</p>
               </div>
             )}
           </div>
