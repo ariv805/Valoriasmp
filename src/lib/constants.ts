@@ -2,7 +2,7 @@
 export const SERVER_IP = 'play.valoriasmp.my.id';
 export const BEDROCK_PORT = '19237';
 export const WHATSAPP_NUMBER = '6285719379665';
-export const DISCORD_LINK = 'https://discord.gg/vjtMbb2R5';
+export const DISCORD_LINK = 'https://discord.gg/TrVjrSSbr';
 export const WHATSAPP_GROUP = 'https://chat.whatsapp.com/GSsNLA6zHISEbcIiYej9l7?mode=gi_t';
 export const VOTE_LINK = 'https://minecraft-mp.com/server/354242/vote/';
 
@@ -206,7 +206,7 @@ export const SOCIAL_LINKS = [
   },
   { 
     name: 'TikTok', 
-    url: 'https://tiktok.com/@valoriasmp', 
+    url: 'https://www.tiktok.com/@valoriasmpx?_r=1&_t=ZS-94dpHZY7dg0', 
     color: 'bg-black',
     description: 'Follow untuk konten seru',
     members: '10K+ Followers'
