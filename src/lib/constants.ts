@@ -138,10 +138,10 @@ export const STAFF_MEMBERS = [
     skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
   },
   { 
-    name: 'Belum ada', 
+    name: 'WasingMC', 
     role: 'Creator', 
     roleColor: 'text-purple-400', 
-    skinHead: 'https://image2url.com/r2/default/images/1773299837560-4fcddb44-1d50-42a8-95d3-ee7038a4c044.jpg' 
+    skinHead: 'https://image2url.com/r2/default/images/1773472707561-3cb16b2f-6eec-4a3c-a075-4102797191be.png' 
   },
 ];
 
