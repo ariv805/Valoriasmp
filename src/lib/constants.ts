@@ -111,7 +111,7 @@ export const STAFF_MEMBERS = [
     name: 'FatihMC', 
     role: 'Owner', 
     roleColor: 'text-red-400', 
-    skinHead: 'https://image2url.com/r2/default/images/1773472901875-c29500ad-8135-4856-a6cf-b83e339eddfd.jpg.jpg' 
+    skinHead: 'https://ibb.co.com/60GCQmNY' 
   },
   { 
     name: 'ZennMC', 
